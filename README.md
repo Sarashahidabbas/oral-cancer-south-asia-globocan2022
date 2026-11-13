@@ -4,7 +4,8 @@
 ![Data](https://img.shields.io/badge/Data-GLOBOCAN%202022-1f4e79)
 ![Licence](https://img.shields.io/badge/Licence-MIT-green)
 
-![Mortality ratio by country](figures/fig1_mortality_incidence_ratio.png)
+![Mortality ratio by country](fig1_mortality_incidence_ratio.png)
+
 
 ## Getting Started
 
@@ -102,9 +103,10 @@ Python, pandas, matplotlib.
 
 ### Figures
 
-![Prevalence per new case](figures/fig2_prevalence_per_new_case.png)
-![Share of cases and deaths](figures/fig3_share_of_cases_and_deaths.png)
-![Deaths above the best ratio](figures/fig4_deaths_above_best_ratio.png)
+![Mortality ratio by country](fig1_mortality_incidence_ratio.png)
+![Prevalence per new case](fig2_prevalence_per_new_case.png)
+![Share of cases and deaths](fig3_share_of_cases_and_deaths.png)
+![Deaths above the best ratio](fig4_deaths_above_best_ratio.png)
 
 ## Interpretation
 
