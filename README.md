@@ -1,6 +1,4 @@
 # Oral Cancer Outcomes Across South Asia
-Secondary analysis of GLOBOCAN 2022 data comparing oral cancer mortality-to-incidence ratios across Pakistan, India, Bangladesh and Sri Lanka.
-
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
 ![Data](https://img.shields.io/badge/Data-GLOBOCAN%202022-1f4e79)
@@ -43,17 +41,13 @@ Pakistan recorded 64 deaths per 100 new cases. Sri Lanka recorded 47.
 
 ## Introduction
 
-Oral cancer often presents early, yet survival outcomes vary significantly across South Asia. While chewing tobacco and betel quid drive high regional risk, mortality rates still differ sharply by country. Using public **GLOBOCAN 2022** estimates, this project compares **Pakistan, India, Bangladesh, and Sri Lanka** to quantify the gap in deaths across the region.
-
-
-### Research questions
+Oral cancer shows early. Chewing tobacco and betel quid raise the risk across South Asia. Outcomes still differ by country. This project compares Pakistan, India, Bangladesh and Sri Lanka with public GLOBOCAN 2022 estimates and sizes the gap in deaths.
 
 Main question: How does the mortality-to-incidence ratio for lip and oral cavity cancer differ across the four countries in 2022?
 
 Supporting questions:
 1. Which country holds the largest share of regional cases and deaths?
 2. Do countries with a higher mortality ratio show fewer five-year prevalent patients per new case?
-3. How does the sex split of new cases differ by country?
 
 ## Data
 
@@ -63,8 +57,8 @@ Source: GLOBOCAN 2022, International Agency for Research on Cancer (IARC), https
 |---|---|
 | Cancer site | Lip, oral cavity |
 | Population | All ages |
-| Variables | New cases, deaths, five-year prevalence, new cases by sex |
-| Files | `data/globocan2022_south_asia_oral_cancer.csv`, `data/globocan2022_incidence_by_sex.csv` |
+| Variables | New cases, deaths, five-year prevalence |
+| File | `data/globocan2022_south_asia_oral_cancer.csv` |
 | Provenance | Typed by hand from the IARC country fact sheets. Each row holds its fact sheet URL |
 
 Check every number against the fact sheet before you cite this work.
@@ -73,12 +67,11 @@ Check every number against the fact sheet before you cite this work.
 
 ### Indicators
 
-Four indicators, calculated per country:
+Three indicators, calculated per country:
 
 - Mortality-to-incidence ratio: deaths divided by new cases. The main outcome, used as a proxy for survival and access to care.
 - Prevalence per new case: five-year prevalence divided by new cases. A second view of how many patients live after diagnosis.
 - Share of the four-country total, for cases and deaths.
-- Male share of new cases.
 
 ### Scenario
 
@@ -92,12 +85,12 @@ Python, pandas, matplotlib.
 
 ### Country table
 
-| Country | New cases | Deaths | Mortality ratio | Prevalence per new case | Share of cases | Share of deaths | Male share |
-|---|---|---|---|---|---|---|---|
-| Pakistan | 15,915 | 10,181 | 0.64 | 2.28 | 8.9% | 10.1% | 67.5% |
-| Bangladesh | 16,083 | 9,447 | 0.59 | 2.50 | 9.0% | 9.4% | 67.1% |
-| India | 143,759 | 79,979 | 0.56 | 2.57 | 80.6% | 79.3% | 75.0% |
-| Sri Lanka | 2,556 | 1,198 | 0.47 | 2.93 | 1.4% | 1.2% | 77.9% |
+| Country | New cases | Deaths | Mortality ratio | Prevalence per new case | Share of cases | Share of deaths |
+|---|---|---|---|---|---|---|
+| Pakistan | 15,915 | 10,181 | 0.64 | 2.28 | 8.9% | 10.1% |
+| Bangladesh | 16,083 | 9,447 | 0.59 | 2.50 | 9.0% | 9.4% |
+| India | 143,759 | 79,979 | 0.56 | 2.57 | 80.6% | 79.3% |
+| Sri Lanka | 2,556 | 1,198 | 0.47 | 2.93 | 1.4% | 1.2% |
 
 ### Findings
 
@@ -105,7 +98,6 @@ Python, pandas, matplotlib.
 - Prevalence per new case runs in the opposite order. Sri Lanka keeps 2.93 patients alive per new case and Pakistan 2.28.
 - India holds 80.6% of cases and 79.3% of deaths.
 - Pakistan and Bangladesh carry a larger share of deaths than of cases.
-- Sri Lanka has the lowest ratio and the highest male share, so sex does not explain the gap alone.
 - At Sri Lanka's ratio, India, Pakistan and Bangladesh would record 17,177 fewer deaths (12,556 in India, 2,717 in Pakistan, 1,904 in Bangladesh). This figure is illustrative.
 
 ### Figures
@@ -113,7 +105,6 @@ Python, pandas, matplotlib.
 ![Prevalence per new case](figures/fig2_prevalence_per_new_case.png)
 ![Share of cases and deaths](figures/fig3_share_of_cases_and_deaths.png)
 ![Deaths above the best ratio](figures/fig4_deaths_above_best_ratio.png)
-![Male share of cases](figures/fig5_male_share_of_cases.png)
 
 ## Interpretation
 
@@ -127,10 +118,9 @@ The next question: what separates Sri Lanka's path from diagnosis to treatment f
 2. The ratio approximates survival. Deaths and new cases in one year do not follow the same patients.
 3. GLOBOCAN values are modelled estimates. Countries with thin registry coverage carry more uncertainty.
 4. Values were typed by hand from fact sheets.
-5. Deaths and prevalence are not split by sex.
-6. No age standardisation. Age structure differs by country.
-7. One year, four countries. No trend and no causal claim.
-8. The scenario treats Sri Lanka as a fair benchmark. Case mix and registry quality differ.
+5. No age standardisation. Age structure differs by country.
+6. One year, four countries. No trend and no causal claim.
+7. The scenario treats Sri Lanka as a fair benchmark. Case mix and registry quality differ.
 
 ## Repository structure
 
@@ -141,18 +131,15 @@ The next question: what separates Sri Lanka's path from diagnosis to treatment f
 ├── oral_cancer_south_asia_analysis.ipynb
 ├── requirements.txt
 ├── data/
-│   ├── globocan2022_south_asia_oral_cancer.csv
-│   └── globocan2022_incidence_by_sex.csv
+│   └── globocan2022_south_asia_oral_cancer.csv
 ├── results/
 │   ├── results_table.csv
-│   ├── scenario_deaths_above_best_ratio.csv
-│   └── sex_split.csv
+│   └── scenario_deaths_above_best_ratio.csv
 └── figures/
     ├── fig1_mortality_incidence_ratio.png
     ├── fig2_prevalence_per_new_case.png
     ├── fig3_share_of_cases_and_deaths.png
-    ├── fig4_deaths_above_best_ratio.png
-    └── fig5_male_share_of_cases.png
+    └── fig4_deaths_above_best_ratio.png
 ```
 
 ## Getting help
