@@ -1,0 +1,5 @@
+Country,Year,Cancer_site,New_cases_both_sexes,Deaths_both_sexes,Five_year_prevalence_both_sexes,Source_URL
+Pakistan,2022,"Lip, oral cavity",15915,10181,36318,https://who.int
+India,2022,"Lip, oral cavity",143759,79979,370106,https://who.int
+Bangladesh,2022,"Lip, oral cavity",16083,9447,40190,https://who.int
+Sri Lanka,2022,"Lip, oral cavity",2556,1198,7490,https://who.int
