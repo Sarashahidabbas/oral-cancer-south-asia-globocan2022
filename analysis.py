@@ -2,8 +2,12 @@
 Run from the repository folder: python analysis.py
 Needs: pandas, matplotlib
 """
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
+
+os.makedirs("results", exist_ok=True)
+os.makedirs("figures", exist_ok=True)
 
 DATA = "data/globocan2022_south_asia_oral_cancer.csv"
 
@@ -98,29 +102,4 @@ ax.set_title("Deaths above the best regional ratio, 2022")
 ax.spines[["top", "right"]].set_visible(False)
 plt.tight_layout()
 plt.savefig("figures/fig4_deaths_above_best_ratio.png", dpi=200)
-plt.close()
-
-# Sex split of new cases
-sx = pd.read_csv("data/globocan2022_incidence_by_sex.csv")
-wide = sx.pivot(index="Country", columns="Sex", values="New_cases").reset_index()
-wide["Total"] = wide["Male"] + wide["Female"]
-check = df.set_index("Country")["New_cases"]
-assert all(wide.set_index("Country")["Total"] == check.loc[wide["Country"]].values), "Sex totals do not match"
-wide["Male_share_pct"] = (100 * wide["Male"] / wide["Total"]).round(1)
-wide["Male_to_female_ratio"] = (wide["Male"] / wide["Female"]).round(2)
-wide = wide.sort_values("Male_share_pct", ascending=False)
-wide.to_csv("results/sex_split.csv", index=False)
-print("\n", wide.to_string(index=False))
-
-fig, ax = plt.subplots(figsize=(7, 4))
-d = wide.sort_values("Male_share_pct")
-bars = ax.barh(d["Country"], d["Male_share_pct"], color="#1f4e79")
-for b, v in zip(bars, d["Male_share_pct"]):
-    ax.text(v + 1, b.get_y() + b.get_height() / 2, f"{v:.1f}%", va="center")
-ax.set_xlim(0, 100)
-ax.set_xlabel("Men as a share of new cases (%)")
-ax.set_title("Male share of oral cancer cases, 2022")
-ax.spines[["top", "right"]].set_visible(False)
-plt.tight_layout()
-plt.savefig("figures/fig5_male_share_of_cases.png", dpi=200)
 plt.close()
